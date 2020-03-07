@@ -1,0 +1,22 @@
+@import "bootstrap";
+
+td.relative {
+  position: relative;
+  padding: 0;
+}
+
+.absolute {
+  display: inline;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  height: 100%;
+}
+
+.button {
+  line-height: 100%;
+}
+
+.line {
+  text-decoration: line-through;
+}
