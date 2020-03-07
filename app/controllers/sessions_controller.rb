@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  # skip_before_action :login_required
+  skip_before_action :login_required
 
   def new
   end
@@ -23,6 +23,6 @@ class SessionsController < ApplicationController
   private
 
   def session_params
-    params.require(:session).permit(:email, :password)
+    params.permit(:email, :password)
   end
 end
