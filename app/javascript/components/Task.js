@@ -17,18 +17,31 @@ function Done(props) {
 }
 
 function Header(props) {
-  let link = `/tasks/${props.id}/edit`
+  let taskId = props.id;
+  let editLink = `/tasks/${taskId}/edit`
+  let deleteLink = `/tasks/${taskId}`
+
   return (
     <td style={{display: "block"}}>
       <Done color={props.color} handleClick={props.handleClick}/>
       <h4
         className={props.line}
-        style={{color: props.color, margin: 0}}
+        style={{color: props.color, margin: 0, display: 'inline-block'}}
         onClick={props.handleChange}
       >
         {props.name}
       </h4>
-      <a className="btn btn-primary mr-3 button" href={link}>編集</a>
+      <div style={{float: 'right'}}>
+        <a className="btn btn-primary mr-3 button" href={editLink}>編集</a>
+        <a dataconfirm="タスク「sample1」を削除します。よろしいですか？"
+           className="btn btn-danger delete button "
+           dataremote="true"
+           rel="nofollow"
+           datamethod="delete"
+           href={deleteLink}>
+           削除
+         </a>
+      </div>
     </td>
   );
 }
