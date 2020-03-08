@@ -17,6 +17,7 @@ function Done(props) {
 }
 
 function Header(props) {
+  let link = `/tasks/${props.id}/edit`
   return (
     <td style={{display: "block"}}>
       <Done color={props.color} handleClick={props.handleClick}/>
@@ -27,6 +28,7 @@ function Header(props) {
       >
         {props.name}
       </h4>
+      <a className="btn btn-primary mr-3 button" href={link}>編集</a>
     </td>
   );
 }
@@ -79,6 +81,7 @@ class Task extends React.Component {
     return (
       <React.Fragment>
         <Header
+          id={this.props.id}
           name={this.state.name}
           handleClick={this.isDone}
           handleChange={this.toggleVisible}
