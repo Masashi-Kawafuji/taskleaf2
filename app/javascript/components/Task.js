@@ -22,61 +22,56 @@ function Header(props) {
   let deleteLink = `/tasks/${taskId}`
 
   return (
-    <td style={{display: "block"}}>
-      <Done color={props.color} handleClick={props.handleClick}/>
-      <h4
-        className={props.line}
-        style={{color: props.color, margin: 0, display: 'inline-block'}}
-        onClick={props.handleChange}
-      >
-        {props.name}
-      </h4>
-      <div style={{float: 'right'}}>
-        <a className="btn btn-primary mr-3 button" href={editLink}>編集</a>
-        <a dataconfirm="タスク「sample1」を削除します。よろしいですか？"
-           className="btn btn-danger delete button "
-           dataremote="true"
-           rel="nofollow"
-           datamethod="delete"
-           href={deleteLink}>
-           削除
-         </a>
-      </div>
-    </td>
+    <tr>
+      <td style={{display: "block"}}>
+        <Done color={props.color} handleClick={props.handleClick}/>
+        <h4
+          className={props.line}
+          style={{color: props.color, margin: 0, display: 'inline-block'}}
+          onClick={props.handleChange}
+        >
+          {props.name}
+        </h4>
+        <div style={{float: 'right'}}>
+          <a className="btn btn-primary mr-3 button" href={editLink}>編集</a>
+          <a dataconfirm="タスク「sample1」を削除します。よろしいですか？"
+             className="btn btn-danger delete button "
+             dataremote="true"
+             rel="nofollow"
+             datamethod="delete"
+             href={deleteLink}>
+             削除
+           </a>
+        </div>
+      </td>
+    </tr>
   );
 }
 
 function Description(props) {
   return (
-    <td colSpan="2" style={{display: props.display}}>
-      {props.description}
-    </td>
+    <tr>
+      <td style={{display: props.display}}>
+        {props.description}
+      </td>
+    </tr>
   );
 }
 
 class Task extends React.Component {
   constructor(props) {
     super(props);
-    this.isDone = this.isDone.bind(this);
+    this.handleDone = this.handleDone.bind(this);
     this.toggleVisible = this.toggleVisible.bind(this);
     this.state = {
-      name: this.props.name,
-      description: this.props.description,
       visible: false,
       display: 'none',
-      color: 'black',
       isDone: false,
-      line: ''
     };
   }
 
-  isDone() {
-    let isDone = this.state.isDone;
-    if (!isDone) {
-      this.setState({color: '#bbb', isDone: true, line: 'line'});
-    } else {
-      this.setState({color: 'black', isDone: false, line: ''});
-    }
+  handleDone() {
+    this.setState({isDone: !this.state.isDone});
   }
 
   toggleVisible() {
@@ -91,18 +86,23 @@ class Task extends React.Component {
   }
 
   render() {
+    const color = this.state.isDone == true ? '#bbb' : 'black';
+    const line = this.state.isDone == true ? 'line' : '';
+
+    const task = this.props.task;
+
     return (
       <React.Fragment>
         <Header
-          id={this.props.id}
-          name={this.state.name}
-          handleClick={this.isDone}
+          id={task.id}
+          name={task.name}
+          handleClick={this.handleDone}
           handleChange={this.toggleVisible}
-          color={this.state.color}
-          line={this.state.line}
+          color={color}
+          line={line}
         />
         <Description
-          description={this.state.description}
+          description={task.description}
           display={this.state.display}
         />
       </React.Fragment>
@@ -110,4 +110,4 @@ class Task extends React.Component {
   }
 }
 
-export default Task
+export default Task;
