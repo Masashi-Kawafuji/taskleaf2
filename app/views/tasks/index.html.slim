@@ -27,6 +27,9 @@ h1 タスク一覧
 /       th
 = react_component('Tasks', tasks: @tasks)
 
+
+= link_to 'done', '/tasks/146/done', method: :post
+
 = link_to 'エクスポート', tasks_path(format: :csv), class: 'btn btn-primary mb-3'
 
 = form_tag import_tasks_path, multipart: true, class: 'mb-3' do

@@ -61,6 +61,12 @@ class TasksController < ApplicationController
     @task.destroy
   end
 
+  def done
+    @task = current_user.tasks.find(params[:id])
+    @task.update(done: !@task.done)
+    head :no_content
+  end
+
   private
 
   def task_params
