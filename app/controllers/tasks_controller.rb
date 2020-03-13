@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :destroy]
+  skip_before_action :verify_authenticity_token
 
   def index
     @q = current_user.tasks.ransack(params[:q])
@@ -57,12 +58,14 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    @task = current_user.tasks.find(params[:id])
+    # @task = current_user.tasks.find(params[:id])
+    @task = Task.find_by(id: params[:id], user_id: current_user.id)
     @task.destroy
+    head :no_content
   end
 
   def done
-    @task = current_user.tasks.find(params[:id])
+    @task = Task.find(params[:id])
     @task.update(done: !@task.done)
     head :no_content
   end

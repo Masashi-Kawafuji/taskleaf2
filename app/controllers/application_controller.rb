@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   helper_method :current_user
   before_action :login_required
+  protect_from_forgery with: :null_session
   # before_action :set_locale
 
   private
