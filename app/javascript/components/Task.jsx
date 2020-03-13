@@ -54,7 +54,7 @@ class Task extends React.Component {
           handleDelete={this.props.handleDelete}
           style={nameStyle()}
         />
-        <tr>
+        <tr className="description">
           <td style={{ display: this.state.display }}>
             {this.props.task.description}
           </td>
