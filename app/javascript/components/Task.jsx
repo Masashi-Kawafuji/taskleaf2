@@ -1,17 +1,6 @@
 import React from "react"
-import PropTypes from "prop-types"
 import Header from './TaskHeader'
 import axios from "axios";
-
-function Description(props) {
-  return (
-    <tr>
-      <td style={{ display: props.display }}>
-        {props.description}
-      </td>
-    </tr>
-  );
-}
 
 class Task extends React.Component {
   constructor(props) {
@@ -24,10 +13,6 @@ class Task extends React.Component {
       isDone: this.props.task.done
     };
   }
-
-  // handleDone() {
-  //   this.setState({ isDone: !this.state.isDone });
-  // }
 
   doneTask = id => {
     axios.post(`http://localhost:3000/tasks/${id}/done`)
@@ -51,10 +36,14 @@ class Task extends React.Component {
   }
 
   render() {
-    const color = this.state.isDone == true ? '#bbb' : 'black';
-    const line = this.state.isDone == true ? 'line' : '';
-
     const task = this.props.task;
+    const nameStyle = () => {
+      if (this.state.isDone === true) {
+        return { color: '#ddd', line: 'line' }
+      } else {
+        return { color: 'black', line: '' }
+      }
+    }
 
     return (
       <React.Fragment>
@@ -63,13 +52,13 @@ class Task extends React.Component {
           handleClick={this.doneTask}
           handleChange={this.toggleVisible}
           handleDelete={this.props.handleDelete}
-          color={color}
-          line={line}
+          style={nameStyle()}
         />
-        <Description
-          description={task.description}
-          display={this.state.display}
-        />
+        <tr>
+          <td style={{ display: this.state.display }}>
+            {this.props.task.description}
+          </td>
+        </tr>
       </React.Fragment>
     );
   }

@@ -1,5 +1,4 @@
 import React from "react"
-import PropTypes from "prop-types"
 import Task from './Task'
 import axios from 'axios'
 
@@ -14,7 +13,6 @@ class Tasks extends React.Component {
   //   axios.get('http://localhost:3000/tasks')
   //     .then(response => {
   //       console.log(response)
-  //       this.setState = { taks: 'jjj' }
   //     })
   //     .catch(error => {
   //       console.log(error)

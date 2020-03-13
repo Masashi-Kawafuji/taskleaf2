@@ -3,7 +3,6 @@ import React from "react"
 function Header(props) {
   let taskId = props.task.id;
   let editLink = `/tasks/${taskId}/edit`
-  let deleteLink = `/tasks/${taskId}`
 
   const handleDone = () => {
     props.handleClick(taskId)
@@ -20,21 +19,23 @@ function Header(props) {
           type="checkbox"
           onChange={handleDone}
           style={{
-            color: props.color,
             float: "left",
             marginTop: "0.5rem",
             marginRight: "10px"
           }}
         />
         <h4
-          className={props.line}
-          style={{ color: props.color, margin: 0, display: 'inline-block' }}
+          className={props.style.line}
+          style={{ color: props.style.color, margin: 0, display: 'inline-block' }}
           onClick={props.handleChange}
         >
           {props.task.name}
         </h4>
         <div style={{ float: 'right' }}>
-          <a className="btn btn-primary mr-3 button" href={editLink}>編集</a>
+          <a
+            className="btn btn-primary mr-3 button"
+            href={editLink}
+          >編集</a>
           <a
             className="btn btn-danger delete button"
             onClick={handleDelete}
@@ -43,7 +44,7 @@ function Header(props) {
            </a>
         </div>
       </td>
-    </tr>
+    </tr >
   );
 }
 
