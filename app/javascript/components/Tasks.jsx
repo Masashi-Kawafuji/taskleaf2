@@ -6,18 +6,24 @@ class Tasks extends React.Component {
   constructor(props) {
     super(props)
     this.deleteTask = this.deleteTask.bind(this)
-    this.state = { tasks: this.props.tasks }
+    this.assignTasks = this.assignTasks.bind(this)
+    this.state = { tasks: [] }
   }
 
-  // assignTasks() {
-  //   axios.get('http://localhost:3000/tasks')
-  //     .then(response => {
-  //       console.log(response)
-  //     })
-  //     .catch(error => {
-  //       console.log(error)
-  //     })
-  // }
+  componentWillMount() {
+    this.assignTasks()
+  }
+
+  assignTasks() {
+    axios.get('http://localhost:3000/tasks/export')
+      .then(response => {
+        console.log(response)
+        this.setState({ tasks: response.data })
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }
 
   deleteTask = id => {
     axios.delete(`http://localhost:3000/tasks/${id}`)

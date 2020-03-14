@@ -26,7 +26,7 @@ h1 タスク一覧
 /       th= sort_link(@q, :name, [:name, 'created_at desc'])
 /       th= Task.human_attribute_name(:created_at)
 /       th
-= react_component('Tasks', tasks: @tasks)
+= react_component 'Tasks'
 
 = link_to 'エクスポート', tasks_path(format: :csv), class: 'btn btn-primary mb-3'
 

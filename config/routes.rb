@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :tasks do
     post :confirm, action: :confirm_new, on: :new
     post :import, on: :collection
+    get :export, action: :export, on: :collection
   end
 
   post '/tasks/:id/done', to: 'tasks#done'

@@ -65,7 +65,6 @@ class Header extends React.Component {
     const taskId = this.props.task.id;
     const display = this.state.visible === true ? 'block' : 'none'
     const editorDisplay = this.state.visible === true ? 'none' : 'block'
-    console.log(this.state.visible)
 
     return (
       <tr>
