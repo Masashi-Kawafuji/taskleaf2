@@ -85,6 +85,7 @@ class Header extends React.Component {
                 marginTop: "0.5rem",
                 marginRight: "10px"
               }}
+              checked={this.props.style.checked}
             />
             <h4
               className={this.props.style.line}

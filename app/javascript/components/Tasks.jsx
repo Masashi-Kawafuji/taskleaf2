@@ -32,7 +32,6 @@ class Tasks extends React.Component {
   }
 
   render() {
-    console.log(this.state.tasks)
     return (
       <table className="table table-hover">
         <tbody>

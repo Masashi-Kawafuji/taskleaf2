@@ -39,9 +39,9 @@ class Task extends React.Component {
     const task = this.props.task;
     const nameStyle = () => {
       if (this.state.isDone === true) {
-        return { color: '#ddd', line: 'line' }
+        return { color: '#ddd', line: 'line', checked: true }
       } else {
-        return { color: 'black', line: '' }
+        return { color: 'black', line: '', checked: false }
       }
     }
 
